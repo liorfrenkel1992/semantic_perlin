@@ -47,10 +47,12 @@ if __name__ == '__main__':
     noise = generate_perlin_noise_2d((256, 256), (8, 8))
     plt.imshow(noise, cmap='gray', interpolation='lanczos')
     plt.colorbar()
+    plt.savefig('perlin_noise.jpg')
 
     np.random.seed(0)
     noise = generate_fractal_noise_2d((256, 256), (8, 8), 5)
     plt.figure()
     plt.imshow(noise, cmap='gray', interpolation='lanczos')
     plt.colorbar()
+    plt.savefig('fractal_noise.jpg')
     plt.show()
