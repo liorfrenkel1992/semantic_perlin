@@ -44,15 +44,15 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
     np.random.seed(0)
-    noise = generate_perlin_noise_2d((256, 256), (8, 8))
+    noise = generate_perlin_noise_2d((512, 512), (8, 8))
     plt.imshow(noise, cmap='gray', interpolation='lanczos')
-    plt.colorbar()
+    plt.axis('off')
     plt.savefig('perlin_noise.jpg')
 
     np.random.seed(0)
-    noise = generate_fractal_noise_2d((256, 256), (8, 8), 5)
+    noise = generate_fractal_noise_2d((512, 512), (8, 8), 5)
     plt.figure()
     plt.imshow(noise, cmap='gray', interpolation='lanczos')
-    plt.colorbar()
+    plt.axis('off')
     plt.savefig('fractal_noise.jpg')
     plt.show()
