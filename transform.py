@@ -11,7 +11,7 @@ def generate_simulated(image, alpha):
 		new_image = image.resize((width-(width%8), height-(height%8)))
 	
 	new_width, new_height = new_image.size
-	print('resized image shape: ', np_image.shape)
+	print('resized image shape: ', new_image.size)
 	np_perlin = generate_fractal_noise_2d((new_width,new_height), (8,8), 5)
 	np_image = np.array(new_image)
 	print('perlin shape: ', np_perlin.shape)
