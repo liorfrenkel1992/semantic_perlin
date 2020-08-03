@@ -30,7 +30,7 @@ if __name__ == '__main__':
 	
 	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
 	alpha = 0.5
-	octaves = 2
+	octaves = 5
 	res = (8,8)
 	combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
 
