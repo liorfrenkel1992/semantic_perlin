@@ -22,7 +22,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	np_perlin = np.repeat(np_perlin[:, :, np.newaxis], 3, axis=2)
 	np_perlin = np.transpose(np_perlin, (1, 0, 2))
 	# Convert perlin image pixels to values between 0 and 255
-	np_perlin = ((np_perlin + 1) * (1/2 * 255)).astype('uint8')
+	np_perlin = ((np_perlin + 2) * (1/4 * 255)).astype('uint8')
 	
 	#pil_perlin = Image.fromarray(np_perlin.astype('uint8'))
 	# Remove salt&pepper noise from perlin image
