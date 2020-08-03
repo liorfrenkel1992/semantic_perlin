@@ -1,6 +1,6 @@
 from PIL import Image
 import numpy as np
-import perlin2d
+from perlin2d import generate_perlin_noise_2d, generate_fractal_noise_2d
 
 # This method gets a PIL image, alpha (0-1) and perlin noise as input 
 #and returns the combined weighted noisy PIL image
