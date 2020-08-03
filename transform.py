@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageFilter
 import numpy as np
 from perlin2d import generate_perlin_noise_2d, generate_fractal_noise_2d
 
@@ -31,6 +31,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
 	print(np.amax(np_perlin), np.amin(np_perlin))
 	combined = Image.fromarray(np_combined.astype('uint8'))
+	combined = combined.filter(ImageFilter.SMOOTH)
 	return combined, np_perlin
 
 
