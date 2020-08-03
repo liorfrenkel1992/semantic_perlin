@@ -23,7 +23,7 @@ alpha = 0.5
 combined_image = generate_simulated(im, alpha)
 
 if __name__ == '__main__':
-    import matplotlib.pyplot as plt
+	import matplotlib.pyplot as plt
 	
 	np.random.seed(0)
 	plt.imshow(noise, cmap='gray', interpolation='lanczos')
