@@ -8,7 +8,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 #and returns the combined weighted noisy PIL image
 	width, height = image.size
 	if width%(res[0]*octaves) != 0 or height%(res[1]*octaves) != 0:
-		new_image = image.resize((width-(width%8), height-(height%8)))
+		new_image = image.resize((width-(width%8), height-(height%8)), 1)
 	
 	new_width, new_height = new_image.size
 	print('resized image shape: ', new_image.size)
