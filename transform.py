@@ -19,15 +19,15 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
-	#combined = Image.fromarray(np_combined.astype(np.uint8))
-	return np_combined
+	combined = Image.fromarray(np_combined.astype(np.uint8))
+	return combined
 
 
 if __name__ == '__main__':
 	import matplotlib.pyplot as plt
 	
 	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
-	alpha = 0.5
+	alpha = 0.8
 	octaves = 1
 	res = (8,8)
 	combined_image = generate_simulated(im, res, alpha, octaves)
