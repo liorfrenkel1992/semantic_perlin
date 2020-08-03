@@ -19,14 +19,16 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	new_width, new_height = new_image.size
 	np_perlin = generate_fractal_noise_2d((new_width,new_height), (8,8), octaves)
 	np_image = np.asarray(new_image).astype('uint8')
+	np_image = np_image / 255
 	np_perlin = np.repeat(np_perlin[:, :, np.newaxis], 3, axis=2)
 	np_perlin = np.transpose(np_perlin, (1, 0, 2))
 	# Convert perlin image pixels to values between 0 and 255
-	np_perlin = ((np_perlin + 1) * (1/2 * 255)).astype('uint8')
-	pil_perlin = Image.fromarray(np_perlin.astype('uint8'))
+	np_perlin = ((np_perlin + 1)/2).astype('uint8')
+	#np_perlin = ((np_perlin + 1) * (1/2 * 255)).astype('uint8')
+	#pil_perlin = Image.fromarray(np_perlin.astype('uint8'))
 	# Remove salt&pepper noise from perlin image
-	pil_perlin = pil_perlin.filter(ImageFilter.MedianFilter(size = 15))
-	np_perlin = np.asarray(pil_perlin).astype('uint8')
+	#pil_perlin = pil_perlin.filter(ImageFilter.MedianFilter(size = 15))
+	#np_perlin = np.asarray(pil_perlin).astype('uint8')
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	#np_combined = np.zeros(np_image.shape)
