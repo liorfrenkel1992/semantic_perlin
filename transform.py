@@ -27,7 +27,7 @@ if __name__ == '__main__':
 	import matplotlib.pyplot as plt
 	
 	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
-	alpha = 0.8
+	alpha = 0.3
 	octaves = 1
 	res = (8,8)
 	combined_image = generate_simulated(im, res, alpha, octaves)
