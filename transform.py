@@ -25,7 +25,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	np_perlin = ((np_perlin + 1) * (1/2 * 255)).astype('uint8')
 	pil_perlin = Image.fromarray(np_perlin.astype('uint8'))
 	# Remove salt&pepper noise from perlin image
-	pil_perlin = pil_perlin.filter(ImageFilter.MedianFilter(size = 9))
+	pil_perlin = pil_perlin.filter(ImageFilter.MedianFilter(size = 21))
 	np_perlin = np.asarray(pil_perlin).astype('uint8')
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
