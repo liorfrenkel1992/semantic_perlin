@@ -7,7 +7,7 @@ import perlin2d
 def generate_simulated(image, alpha):
 	width, height = image.size
 	if width%8 != 0 or height%8 != 0:
-		new_image = image.resize(width-(width%8), height-(height%8))
+		new_image = image.resize((width-(width%8), height-(height%8)))
 	#print('width: ', w)
 	#print('height:', h)
 	new_width, new_height = new_image.size
