@@ -7,8 +7,6 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 # This method gets a PIL image, alpha (0-1) and perlin noise as input 
 #and returns the combined weighted noisy PIL image
 	width, height = image.size
-	print(width, height, res, octaves)
-	print(width%(res[0]*np.power(2,octaves-1)), height%(res[1]*np.power(2,octaves-1)))
 	mod_width = res[0]*np.power(2,octaves-1)
 	mod_height = res[1]*np.power(2,octaves-1)
 	if width%mod_width != 0 and height%mod_height != 0:
@@ -19,7 +17,6 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 		new_image = image.resize((width, height-(height%mod_height)))
 	
 	new_width, new_height = new_image.size
-	print('resized image shape: ', new_image.size)
 	np_perlin = generate_fractal_noise_2d((new_width,new_height), (8,8), octaves)
 	np_image = np.asarray(new_image)
 	#np_perlin = np.repeat(np_perlin[:, :, np.newaxis], 3, axis=2)
@@ -29,6 +26,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	np_combined = np.zeros(np_image.shape)
 	for layer in range(np_image.shape[2]):
 		np_combined[:,:,layer] = alpha*np_image[:,:,layer] + (1-alpha)*np_perlin
+	print(np_combined-np_image)
 	combined = Image.fromarray(np_combined.astype(np.uint8))
 	return combined, np_perlin
 
