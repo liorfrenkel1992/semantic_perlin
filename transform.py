@@ -14,6 +14,8 @@ def generate_simulated(image, alpha):
 	print('resized image shape: ', new_image.size)
 	np_perlin = generate_perlin_noise_2d((new_width,new_height), (8,8))
 	np_image = np.array(new_image)
+	np_perlin = np.repeat(np_perlin[:, :, np.newaxis], 3, axis=2)
+	np_perlin = np.transpose(np_perlin, (1, 0, 2))
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
