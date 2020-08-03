@@ -7,8 +7,12 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 # This method gets a PIL image, alpha (0-1) and perlin noise as input 
 #and returns the combined weighted noisy PIL image
 	width, height = image.size
-	if width%(res[0]*octaves) != 0 or height%(res[1]*octaves) != 0:
+	if width%(res[0]*octaves) != 0 and height%(res[1]*octaves) != 0:
 		new_image = image.resize((width-(width%(res[0]*octaves)), height-(height%(res[1]*octaves))))
+	if width%(res[0]*octaves) != 0 and height%(res[1]*octaves) == 0:
+		new_image = image.resize((width-(width%(res[0]*octaves)), height))
+	if width%(res[0]*octaves) == 0 and height%(res[1]*octaves) != 0:
+		new_image = image.resize((width, height-(height%(res[1]*octaves))))
 	
 	new_width, new_height = new_image.size
 	print('resized image shape: ', new_image.size)
