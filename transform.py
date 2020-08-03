@@ -2,17 +2,19 @@ from PIL import Image
 import numpy as np
 from perlin2d import generate_perlin_noise_2d, generate_fractal_noise_2d
 
+
+def generate_simulated(image, alpha):
 # This method gets a PIL image, alpha (0-1) and perlin noise as input 
 #and returns the combined weighted noisy PIL image
-def generate_simulated(image, alpha):
 	width, height = image.size
 	if width%8 != 0 or height%8 != 0:
 		new_image = image.resize((width-(width%8), height-(height%8)))
-	#print('width: ', w)
-	#print('height:', h)
+	
 	new_width, new_height = new_image.size
 	np_perlin = generate_fractal_noise_2d((new_width,new_height), (8,8), 5)
 	np_image = np.array(new_image)
+	print('perlin shape: ', np_perlin.shape)
+	print('resized image shape: ', np_image.shape)
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
 	combined = Image.fromarray(np_combined)
 	return combined
