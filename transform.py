@@ -18,9 +18,11 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	
 	new_width, new_height = new_image.size
 	np_perlin = generate_fractal_noise_2d((new_width,new_height), (8,8), octaves)
-	np_image = np.asarray(new_image)
+	np_image = np.asarray(new_image).astype('uint8')
 	#np_perlin = np.repeat(np_perlin[:, :, np.newaxis], 3, axis=2)
 	np_perlin = np.transpose(np_perlin, (1, 0))
+	# Convert perlin images to values between 0 and 255
+	np_perlin = ((np_perlin + 1) * (1/2 * 255)).astype('uint8')
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	np_combined = np.zeros(np_image.shape)
@@ -28,7 +30,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 		np_combined[:,:,layer] = alpha*np_image[:,:,layer] + (1-alpha)*np_perlin
 	print(np_perlin)
 	print(np_image)
-	combined = Image.fromarray(np_combined.astype(np.uint8))
+	combined = Image.fromarray(np_combined)
 	return combined, np_perlin
 
 
