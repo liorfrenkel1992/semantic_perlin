@@ -23,14 +23,14 @@ def generate_simulated(image, alpha):
 	return combined
 
 
-im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
-alpha = 0.5
-combined_image = generate_simulated(im, alpha)
-
 if __name__ == '__main__':
 	import matplotlib.pyplot as plt
 	
+	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
+	alpha = 0.5
+	combined_image = generate_simulated(im, alpha)
+
 	np.random.seed(0)
-	plt.imshow(noise, cmap='gray', interpolation='lanczos')
+	plt.imshow(combined_image)
 	plt.axis('off')
 	plt.savefig('/data/image_processing/data/combined_image.jpg')
