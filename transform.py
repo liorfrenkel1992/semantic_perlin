@@ -23,6 +23,8 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	np_perlin = np.transpose(np_perlin, (1, 0, 2))
 	# Convert perlin image pixels to values between 0 and 255
 	np_perlin = ((np_perlin + 1) * (1/2 * 255)).astype('uint8')
+	np_perlin[np_perlin>255] = 255
+	#np_perlin[np_perlin<0] = 0
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	#np_combined = np.zeros(np_image.shape)
