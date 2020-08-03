@@ -9,12 +9,14 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	width, height = image.size
 	print(width, height, res, octaves)
 	print(width%(res[0]*np.power(2,octaves-1)), height%(res[1]*np.power(2,octaves-1)))
-	if width%(res[0]*octaves) != 0 and height%(res[1]*octaves) != 0:
-		new_image = image.resize((width-(width%(res[0]*octaves)), height-(height%(res[1]*octaves))))
-	if width%(res[0]*octaves) != 0 and height%(res[1]*octaves) == 0:
-		new_image = image.resize((width-(width%(res[0]*octaves)), height))
-	if width%(res[0]*octaves) == 0 and height%(res[1]*octaves) != 0:
-		new_image = image.resize((width, height-(height%(res[1]*octaves))))
+	mod_width = res[0]*np.power(2,octaves-1)
+	mod_height = res[1]*np.power(2,octaves-1)
+	if width%mod_width != 0 and height%mod_height != 0:
+		new_image = image.resize((width-(width%mod_width), height-(height%mod_height)))
+	if width%mod_width != 0 and height%mod_height == 0:
+		new_image = image.resize((width-(width%mod_width), height))
+	if width%mod_width == 0 and height%mod_height != 0:
+		new_image = image.resize((width, height-(height%mod_height)))
 	
 	new_width, new_height = new_image.size
 	print('resized image shape: ', new_image.size)
