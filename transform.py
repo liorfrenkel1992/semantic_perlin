@@ -20,7 +20,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	print('resized image shape: ', np_image.shape)
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
 	combined = Image.fromarray(np_combined.astype(np.uint8))
-	return combined
+	return combined, np_perlin
 
 
 if __name__ == '__main__':
@@ -30,9 +30,16 @@ if __name__ == '__main__':
 	alpha = 0.3
 	octaves = 1
 	res = (8,8)
-	combined_image = generate_simulated(im, res, alpha, octaves)
+	combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
 
 	np.random.seed(0)
 	plt.imshow(combined_image)
 	plt.axis('off')
 	plt.savefig('/data/image_processing/data/combined_image.jpg')
+	
+	perlin_3d = Image.fromarray(np_perlin.astype(np.uint8))
+	np.random.seed(0)
+	plt.imshow(perlin_3d)
+	plt.axis('off')
+	plt.savefig('/data/image_processing/data/perlin_3d.jpg')
+
