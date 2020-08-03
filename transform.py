@@ -26,7 +26,8 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	np_combined = np.zeros(np_image.shape)
 	for layer in range(np_image.shape[2]):
 		np_combined[:,:,layer] = alpha*np_image[:,:,layer] + (1-alpha)*np_perlin
-	print(np_combined-np_image)
+	print(np_perlin)
+	print(np_image)
 	combined = Image.fromarray(np_combined.astype(np.uint8))
 	return combined, np_perlin
 
