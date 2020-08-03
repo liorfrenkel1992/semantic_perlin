@@ -8,7 +8,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 #and returns the combined weighted noisy PIL image
 	width, height = image.size
 	if width%(res[0]*octaves) != 0 or height%(res[1]*octaves) != 0:
-		new_image = image.resize((width-(width%8), height-(height%8)), 1)
+		new_image = image.resize((width-(width%(res[0]*octaves)), height-(height(res[1]*octaves))), 1)
 	
 	new_width, new_height = new_image.size
 	print('resized image shape: ', new_image.size)
@@ -30,7 +30,7 @@ if __name__ == '__main__':
 	
 	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
 	alpha = 0.5
-	octaves = 1
+	octaves = 2
 	res = (8,8)
 	combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
 
