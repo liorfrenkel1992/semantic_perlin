@@ -41,7 +41,7 @@ if __name__ == '__main__':
 	
 	#perlin_3d = Image.fromarray(np_perlin.astype(np.uint8))
 	np.random.seed(0)
-	plt.imshow(np_perlin)
+	plt.imshow(np_perlin, cmap='gray', interpolation='lanczos')
 	plt.axis('off')
 	plt.savefig('/data/image_processing/data/perlin_3d.jpg')
 
