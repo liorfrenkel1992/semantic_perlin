@@ -30,7 +30,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 		np_combined[:,:,layer] = alpha*np_image[:,:,layer] + (1-alpha)*np_perlin
 	print(np_perlin)
 	print(np_image)
-	combined = Image.fromarray(np_combined)
+	combined = Image.fromarray(np_combined.astype('uint8'))
 	return combined, np_perlin
 
 
