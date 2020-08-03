@@ -19,8 +19,8 @@ def generate_simulated(image, res, alpha=0.5, octaves=1):
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
-	combined = Image.fromarray(np_combined.astype(np.uint8))
-	return combined
+	#combined = Image.fromarray(np_combined.astype(np.uint8))
+	return np_combined
 
 
 if __name__ == '__main__':
