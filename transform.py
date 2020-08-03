@@ -28,7 +28,7 @@ if __name__ == '__main__':
 	
 	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
 	alpha = 0.5
-	octaves = 2
+	octaves = 1
 	res = (8,8)
 	combined_image = generate_simulated(im, res, alpha, octaves)
 
