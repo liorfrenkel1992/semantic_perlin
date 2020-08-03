@@ -39,7 +39,7 @@ if __name__ == '__main__':
 	plt.axis('off')
 	plt.savefig('/data/image_processing/data/combined_image.jpg')
 	
-	perlin_3d = Image.fromarray(np_perlin.astype(np.uint8))
+	#perlin_3d = Image.fromarray(np_perlin.astype(np.uint8))
 	np.random.seed(0)
 	plt.imshow(perlin_3d)
 	plt.axis('off')
