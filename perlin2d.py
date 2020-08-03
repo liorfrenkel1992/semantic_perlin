@@ -40,6 +40,7 @@ def generate_fractal_noise_2d(shape, res, octaves=1, persistence=0.5, lacunarity
         amplitude *= persistence
     return noise
 
+"""
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
@@ -56,3 +57,4 @@ if __name__ == '__main__':
     plt.axis('off')
     plt.savefig('/data/image_processing/data/fractal_noise.jpg')
     plt.show()
+"""
