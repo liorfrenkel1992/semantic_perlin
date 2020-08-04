@@ -3,12 +3,12 @@ import numpy as np
 from perlin2d import generate_perlin_noise_2d, generate_fractal_noise_2d
 
 
-def generate_simulated(image, res, alpha=0.5, octaves=1):
+def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 # This method gets a PIL image, alpha (0-1) and perlin noise as input 
 #and returns the combined weighted noisy PIL image
 	width, height = image.size
-	mod_width = res[0]*np.power(2,octaves-1)
-	mod_height = res[1]*np.power(2,octaves-1)
+	mod_width = res[0]*np.power(lacunarity,octaves-1)
+	mod_height = res[1]*np.power(lacunarity,octaves-1)
 	if width%mod_width != 0 and height%mod_height != 0:
 		new_image = image.resize((width-(width%mod_width), height-(height%mod_height)))
 	if width%mod_width != 0 and height%mod_height == 0:
