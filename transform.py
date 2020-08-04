@@ -53,8 +53,8 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 	for i in directories:
 		os.chdir(i)  # Change working Directory
 		for image_file in glob.iglob('./*.png'):
-			filename=os.path.basename(image_file)
-      			filename=os.path.splitext(filename)[0]
+			filename = os.path.basename(image_file)
+			filename = os.path.splitext(filename)[0]
 			print(filename)
 			im = Image.open(image_file)
 			combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
