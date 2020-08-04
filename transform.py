@@ -11,6 +11,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	width, height = image.size
 	mod_width = res[0]*np.power(lacunarity,octaves-1)
 	mod_height = res[1]*np.power(lacunarity,octaves-1)
+	new_image = image
 	if width%mod_width != 0 and height%mod_height != 0:
 		new_image = image.resize((width-(width%mod_width), height-(height%mod_height)))
 	if width%mod_width != 0 and height%mod_height == 0:
