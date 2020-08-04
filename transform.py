@@ -1,5 +1,7 @@
 from PIL import Image, ImageFilter
 import numpy as np
+import glob
+import os
 from perlin2d import generate_perlin_noise_2d, generate_fractal_noise_2d
 
 
@@ -39,14 +41,40 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	combined = Image.fromarray(np_combined.astype('uint8'))
 	return combined, np_perlin
 
+def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
+	directory_to_check = "/data/image_processing/data/ADEChallengeData2016/images" # Which directory do you want to start with?
+	directory_train = "/data/image_processing/data/ADEChallengeData2016/images/training"
+	#directory_test = "/data/image_processing/data/ADEChallengeData2016/images/testing"
+	directory_val = "/data/image_processing/data/ADEChallengeData2016/images/validation"
 
+	directories = [os.path.abspath(x[0]) for x in os.walk(directory_to_check)]
+	directories.remove(os.path.abspath(directory_to_check)) # Remove parent directory
+
+	for i in directories:
+		os.chdir(i)  # Change working Directory
+		for image_file in glob.iglob('./*.png'):
+			filename=os.path.basename(image_file)
+      			filename=os.path.splitext(filename)[0]
+			print(filename)
+			im = Image.open(image_file)
+			combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
+			np.random.seed(0)
+			plt.imshow(combined_image)
+			plt.axis('off')
+			plt.savefig("%s.jpg" %filename)
+		
 if __name__ == '__main__':
 	import matplotlib.pyplot as plt
 	
-	im = Image.open('/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg')
 	alpha = 0.5
 	octaves = 5
 	res = (8,8)
+	
+	convert_images(res, alpha, octaves)
+	
+	"""
+	PATH = '/data/image_processing/data/ADEChallengeData2016/images/training/ADE_train_00000001.jpg'
+	im = Image.open(PATH)
 	combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
 
 	np.random.seed(0)
@@ -59,4 +87,4 @@ if __name__ == '__main__':
 	plt.imshow(np_perlin, cmap='gray', interpolation='lanczos')
 	plt.axis('off')
 	plt.savefig('/data/image_processing/data/perlin_3d.jpg')
-
+	""""
