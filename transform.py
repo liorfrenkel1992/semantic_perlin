@@ -87,4 +87,4 @@ if __name__ == '__main__':
 	plt.imshow(np_perlin, cmap='gray', interpolation='lanczos')
 	plt.axis('off')
 	plt.savefig('/data/image_processing/data/perlin_3d.jpg')
-	""""
+	"""
