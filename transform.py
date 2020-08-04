@@ -52,7 +52,7 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 
 	for i in directories:
 		os.chdir(i)  # Change working Directory
-		for image_file in glob.iglob('./*.png'):
+		for image_file in glob.iglob('./*.jpg'):
 			filename = os.path.basename(image_file)
 			filename = os.path.splitext(filename)[0]
 			print(filename)
