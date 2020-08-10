@@ -12,12 +12,24 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	mod_width = res[0]*np.power(lacunarity,octaves-1)
 	mod_height = res[1]*np.power(lacunarity,octaves-1)
 	new_image = image
+	
 	if width%mod_width != 0 and height%mod_height != 0:
-		new_image = image.resize((width-(width%mod_width), height-(height%mod_height)))
+		if (width%mod_width) >= width or height%mod_height >= height:
+			new_image = image.resize((2*width-(width%mod_width), 2*height-(height%mod_height)))
+		else:
+			new_image = image.resize((width-(width%mod_width), height-(height%mod_height)))
+	
 	if width%mod_width != 0 and height%mod_height == 0:
-		new_image = image.resize((width-(width%mod_width), height))
+		if (width%mod_width) >= width:
+			new_image = image.resize((2*width-(width%mod_width), height))
+		else:
+			new_image = image.resize((width-(width%mod_width), height))
+	
 	if width%mod_width == 0 and height%mod_height != 0:
-		new_image = image.resize((width, height-(height%mod_height)))
+		if height%mod_height >= height:
+			new_image = image.resize((width, 2*height-(height%mod_height)))
+		else:
+			new_image = image.resize((width, height-(height%mod_height)))
 	
 	new_width, new_height = new_image.size
 	np_perlin = generate_fractal_noise_2d((new_width,new_height), (8,8), octaves)
