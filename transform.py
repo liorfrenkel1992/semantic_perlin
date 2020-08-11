@@ -66,16 +66,15 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 	for i in directories:
 		os.chdir(i)  # Change working Directory
 		for image_file in glob.iglob('./*.jpg'):
-			if os.path.getmtime(image_file) > 1500000000:
-				filename = os.path.basename(image_file)
-				filename = os.path.splitext(filename)[0]
-				print(filename)
-				im = Image.open(image_file)
-				combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
-				np.random.seed(0)
-				plt.imshow(combined_image)
-				plt.axis('off')
-				plt.savefig("%s.jpg" %filename)
+			filename = os.path.basename(image_file)
+			filename = os.path.splitext(filename)[0]
+			print(filename)
+			im = Image.open(image_file)
+			combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
+			np.random.seed(0)
+			plt.imshow(combined_image)
+			plt.axis('off')
+			plt.savefig("%s.jpg" %filename)
 		
 if __name__ == '__main__':
 	import matplotlib.pyplot as plt
