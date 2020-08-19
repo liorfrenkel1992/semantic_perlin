@@ -75,7 +75,7 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 			#plt.imshow(combined_image)
 			#plt.axis('off')
 			#plt.savefig("%s.jpg" %filename)
-			im.save(filename)
+			im.save('new_'+filename)
 			im.close()
 		
 if __name__ == '__main__':
