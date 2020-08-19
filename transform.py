@@ -3,6 +3,7 @@ import numpy as np
 import glob
 import os
 from perlin2d import generate_perlin_noise_2d, generate_fractal_noise_2d
+import re
 
 
 def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
@@ -39,16 +40,9 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	# Convert perlin image pixels to values between 0 and 255
 	np_perlin = ((np_perlin + 2) * (1/4 * 255)).astype('uint8')
 	
-	#pil_perlin = Image.fromarray(np_perlin.astype('uint8'))
-	# Remove salt&pepper noise from perlin image
-	#pil_perlin = pil_perlin.filter(ImageFilter.MedianFilter(size = 15))
-	#np_perlin = np.asarray(pil_perlin).astype('uint8')
-	
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
-	#np_combined = np.zeros(np_image.shape)
-	#for layer in range(np_image.shape[2]):
-		#np_combined[:,:,layer] = alpha*np_image[:,:,layer] + (1-alpha)*np_perlin
+	
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
 	#print(np.amax(np_perlin), np.amin(np_perlin))
 	combined = Image.fromarray(np_combined.astype('uint8'))
@@ -68,6 +62,9 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 		for image_file in glob.iglob('./*.jpg'):
 			filename = os.path.basename(image_file)
 			filename2 = os.path.splitext(filename)[0]
+			res_im = re.findall("(\d+)_ADE", filename2)
+			if not not res_im:
+				continue
 			print(filename2)
 			im = Image.open(image_file)
 			combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
