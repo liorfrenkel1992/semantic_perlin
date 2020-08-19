@@ -50,7 +50,7 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	#for layer in range(np_image.shape[2]):
 		#np_combined[:,:,layer] = alpha*np_image[:,:,layer] + (1-alpha)*np_perlin
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
-	print(np.amax(np_perlin), np.amin(np_perlin))
+	#print(np.amax(np_perlin), np.amin(np_perlin))
 	combined = Image.fromarray(np_combined.astype('uint8'))
 	return combined, np_perlin
 
