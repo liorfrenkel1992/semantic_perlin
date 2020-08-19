@@ -62,7 +62,7 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 		for image_file in glob.iglob('./*.jpg'):
 			filename = os.path.basename(image_file)
 			filename2 = os.path.splitext(filename)[0]
-			res_im = re.findall("(\d+)_ADE", filename2)
+			res_im = re.findall("(\w+)_ADE", filename2)
 			if not not res_im:
 				continue
 			print(filename2)
