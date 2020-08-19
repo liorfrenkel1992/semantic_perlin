@@ -55,10 +55,10 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	return combined, np_perlin
 
 def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
-	directory_to_check = "/data/image_processing/data/ADEChallengeData2016/images" # Which directory do you want to start with?
-	directory_train = "/data/image_processing/data/ADEChallengeData2016/images/training"
+	directory_to_check = "/data/image_processing/data/ADE_new/images" # Which directory do you want to start with?
+	directory_train = "/data/image_processing/data/ADE_new/images/training"
 	#directory_test = "/data/image_processing/data/ADEChallengeData2016/images/testing"
-	directory_val = "/data/image_processing/data/ADEChallengeData2016/images/validation"
+	directory_val = "/data/image_processing/data/ADE_new/images/validation"
 
 	directories = [os.path.abspath(x[0]) for x in os.walk(directory_to_check)]
 	directories.remove(os.path.abspath(directory_to_check)) # Remove parent directory
