@@ -43,6 +43,9 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	print('perlin shape: ', np_perlin.shape)
 	print('resized image shape: ', np_image.shape)
 	
+	if np_image.ndim != 3:
+		np_image = np.repeat(np_image[:, :, np.newaxis], 3, axis=2)
+	
 	np_combined = alpha*np_image + (1-alpha)*np_perlin
 	#print(np.amax(np_perlin), np.amin(np_perlin))
 	combined = Image.fromarray(np_combined.astype('uint8'))
