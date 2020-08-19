@@ -68,11 +68,12 @@ def convert_images(res=(8,8), alpha=0.5, octaves=1, lacunarity=2):
 			print(filename2)
 			im = Image.open(image_file)
 			combined_image, np_perlin = generate_simulated(im, res, alpha, octaves)
-			np.random.seed(0)
+			#np.random.seed(0)
 			#plt.imshow(combined_image)
 			#plt.axis('off')
 			#plt.savefig("%s.jpg" %filename)
-			im.save('new_'+filename)
+			combined_image.save('new_'+filename)
+			combined_image.close()
 			im.close()
 		
 if __name__ == '__main__':
