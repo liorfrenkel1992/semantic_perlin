@@ -15,20 +15,20 @@ def generate_simulated(image, res, alpha=0.5, octaves=1, lacunarity=2):
 	new_image = image
 	
 	if width%mod_width != 0 and height%mod_height != 0:
-		if (width%mod_width) >= width or height%mod_height >= height:
-			new_image = image.resize((2*width-(width%mod_width), 2*height-(height%mod_height)))
+		if mod_width >= width or mod_height >= height:
+			new_image = image.resize((2*width-((2*width)%mod_width), 2*height-((2*height)%mod_height)))
 		else:
 			new_image = image.resize((width-(width%mod_width), height-(height%mod_height)))
 	
 	if width%mod_width != 0 and height%mod_height == 0:
-		if (width%mod_width) >= width:
-			new_image = image.resize((2*width-(width%mod_width), height))
+		if mod_width >= width:
+			new_image = image.resize((2*width-((2*width)%mod_width), height))
 		else:
 			new_image = image.resize((width-(width%mod_width), height))
 	
 	if width%mod_width == 0 and height%mod_height != 0:
-		if height%mod_height >= height:
-			new_image = image.resize((width, 2*height-(height%mod_height)))
+		if mod_height >= height:
+			new_image = image.resize((width, 2*height-((2*height)%mod_height)))
 		else:
 			new_image = image.resize((width, height-(height%mod_height)))
 	
